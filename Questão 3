@@ -1,0 +1,44 @@
+# Quantidade de pedras:
+num_pedras = int(input())
+
+# Input das distância em lista:
+distancia1 = input().split()
+distancia2 = input().split()
+
+dicionario1 = {}
+dicionario2 = {}
+diferenca = False
+
+# Criando os dicionários:
+for distancia in distancia1:
+    # Testando se a distância já apareceu no dicionario:
+    teste_presenca = dicionario1.get(distancia, 'Não aparece')
+    if teste_presenca != 'Não aparece':
+        dicionario1.update({distancia: teste_presenca + 1})
+    else:
+        dicionario1.update({distancia: 1})
+
+for distancia in distancia2:
+    # Testando se a distância já apareceu no dicionário:
+    teste_presenca = dicionario2.get(distancia, 'Não aparece')
+    if teste_presenca != 'Não aparece':
+        dicionario2.update({distancia: teste_presenca + 1})
+    else:
+        dicionario2.update({distancia: 1})
+
+# Conferindo se os dicionarios são iguais:
+for chave, valor in dicionario1.items():
+    teste_presenca = dicionario2.get(chave, 'Não existe')
+    if teste_presenca == 'Não existe':
+        diferenca = True
+        break
+    else:
+        if teste_presenca != valor:
+            diferenca = True
+            break
+
+# Output:
+if not diferenca:
+    print('Dale Gohan!')
+else:
+    print('Ih, nao foi agora, Gohan! Vamos tentar de novo semana que vem.')
