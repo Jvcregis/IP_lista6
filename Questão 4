@@ -1,0 +1,44 @@
+# Inputs:
+num_cartas = int(input())
+dicionario = {}
+
+for i in range(num_cartas):
+    carta = input().split()
+    defesa = int(carta.pop(-1))
+    ataque = int(carta.pop(-1))
+
+    # Separando o nome:
+    nome = ''
+    indice = 0
+    for elemento in carta:
+        if indice == 0:
+            nome = elemento
+        else:
+            nome += ' ' + elemento
+        indice += 1
+
+    # Atualizando o dicionário:
+    dicionario.update({nome: [ataque, defesa]})
+
+
+# Percorrendo o dicionário:
+maior_ataque = -1
+maior_defesa = -1
+nome_maior_ataque = ''
+nome_maior_defesa = ''
+
+for chave, valor in dicionario.items():
+    ataque = valor[0]
+    defesa = valor[1]
+    if ataque > maior_ataque:
+        nome_maior_ataque = chave
+        maior_ataque = ataque
+
+    if defesa > maior_defesa:
+        nome_maior_defesa = chave
+        maior_defesa = defesa
+
+# Output:
+print(f'Carta com maior poder de ataque:\n{nome_maior_ataque}\nAtaque: {maior_ataque}')
+
+print(f'Carta com maior poder de defesa:\n{nome_maior_defesa}\nDefesa: {maior_defesa}')
