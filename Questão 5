@@ -1,0 +1,47 @@
+# Dicionários:
+dicionario_jogadores = {'Bobby': ['grande espada', 'armadura media'], 'Diana': ['dardo', 'armadura leve'],
+                        'Eric': ['grande espada', 'armadura pesada'], 'Hank': ['espada', 'armadura media'],
+                        'Presto': ['cajado', 'armadura leve'], 'Sheila': ['espada', 'armadura leve'],
+                        'Uni': ['chifre', 'armadura leve']}
+
+dicionario_armas = {'chifre': 2, 'cajado': 4, 'espada': 6, 'grande espada': 8, 'dardo': 12}
+
+dicionario_armaduras = {'armadura pesada': 0, 'armadura media': 1, 'armadura leve': 3}
+
+# Inputs:
+adversario = input()
+
+if adversario == 'Vingador':
+    vida = 30
+elif adversario == 'Tiamat':
+    vida = 20
+elif adversario == 'Vingador das Sombras':
+    vida = 14
+else:
+    vida = 9
+
+turnos = int(input())
+progresso = 0
+personagem = ''
+
+while progresso < turnos and vida > 0:
+    personagem = input()
+    if personagem == 'Mestre dos Magos':
+        vida = 0
+    else:
+        arma = dicionario_jogadores.get(personagem)[0]
+        dano = dicionario_armas.get(arma)
+        vida -= dano
+
+        # Cálculo do progresso:
+        armadura = dicionario_jogadores.get(personagem)[1]
+        progresso = dicionario_armaduras.get(armadura) + 1
+
+
+# Output:
+if personagem == 'Mestre dos Magos':
+    print('Muito obrigado amigo, que nos vejamos novamente um dia')
+elif vida <= 0:
+    print(f'{personagem} executou o ultimo golpe em {adversario}, estamos livres!')
+else:
+    print(f'Oh nao, {adversario} e muito forte, este e o fim!')
