@@ -1,0 +1,63 @@
+# Criando dicionário:
+dicionario = {'Carneiro': {'Habilidade': 'Adormecer', 'Requisito': 'Imortalidade'},
+              'Cao': {'Habilidade': 'Imortalidade', 'Requisito': 'Forca descomunal'},
+              'Cobra': {'Habilidade': 'Invisibilidade', 'Requisito': 'Equilibrio espiritual'},
+              'Coelho': {'Habilidade': 'Alta velocidade', 'Requisito': 'Metamorfose animal'},
+              'Tigre': {'Habilidade': 'Equilibrio espiritual', 'Requisito': 'Adormecer'},
+              'Dragao': {'Habilidade': 'Fogo', 'Requisito': 'Cura'},
+              'Cavalo': {'Habilidade': 'Cura', 'Requisito': 'Levitacao'},
+              'Macaco': {'Habilidade': 'Metamorfose animal', 'Requisito': 'Raio laser'},
+              'Galo': {'Habilidade': 'Levitacao', 'Requisito': 'Animar objetos'},
+              'Porco': {'Habilidade': 'Raio laser', 'Requisito': 'Fogo'},
+              'Rato': {'Habilidade': 'Animar objetos', 'Requisito': 'Alta velocidade'},
+              'Touro': {'Habilidade': 'Forca descomunal', 'Requisito': 'Invisibilidade'}}
+
+# Inputs jackie chan:
+num_talismas = int(input())
+lista_jackie = []
+
+for i in range(num_talismas):
+    talisma = input()
+    lista_jackie.append(talisma)
+
+# Inputs adversário:
+num_talismas_adversario = int(input())
+lista_adversario = []
+
+for j in range(num_talismas_adversario):
+    talisma = input()
+    lista_adversario.append(talisma)
+
+# Criando a lista de habilidades do jackie chan:
+habilidades_jackie = []
+for talisma in lista_jackie:
+    habilidade = dicionario.get(talisma).get('Habilidade')
+    habilidades_jackie.append(habilidade)
+
+# main:
+talisma_faltando = ''
+falhou = False
+for talisma in lista_adversario:
+    requisito = dicionario.get(talisma).get('Requisito')
+
+    # Testando se o requisito está na lista das habilidades do jackie:
+    presenca = requisito in habilidades_jackie
+
+    if presenca:
+        print(f'Boa! O talisma do {talisma} vai ser nosso!')
+        # Adicionando nova habilidade:
+        habilidade_talisma = dicionario.get(talisma).get('Habilidade')
+        habilidades_jackie.append(habilidade_talisma)
+    else:
+        # Procurando nova habilidade:
+        for chave,valor in dicionario:
+            if valor.get('Habilidade') == requisito:
+                talisma_faltando = chave
+        print(f'Nao vai dar, melhor ir atras do talisma do {talisma_faltando} antes.')
+        falhou = True
+
+# Output:
+if falhou:
+    print('Que mau dia!! Melhor pensarmos num plano de fuga')
+else:
+    print('Esse plano funciona, vamos agora!')
